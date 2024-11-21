@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .message {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .message.user {
+            justify-content: flex-end;
+        }
+        .message.user .bubble {
+            background-color: #d1e7dd;
+        }
+        .message.system .bubble {
+            background-color: #f7e7bc;
+        }
+        .bubble {
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 70%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="container mt-5">
+            <div class="d-flex align-items-center mb-4">
+                <img src="https://loodibee.com/wp-content/uploads/Pokemon-Symbol-logo-300x300.png" alt="Pokédex logo" style="width: 50px;">
+                <h1 class="text-center mb-1">Pokedex</h1>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div id="chat-log" class="mb-3" style="height: 800px; overflow-y: auto; background-color: #f8f9fa; padding: 10px; border-radius: 5px;">
+                    <!-- Chat messages will appear here -->
+                </div>
+                <div class="input-group">
+                    <input id="message" type="text" class="form-control" placeholder="Type your message here">
+                    <button class="btn btn-primary" onclick="sendMessage()" id="send-button">Send</button>
+                </div>
+                <div class="input-group mt-3" style="width: 50%; justify-content: flex-end; margin-left: auto;">
+                    <input id="image-upload" type="file" class="form-control" accept="image/*">
+                    <button class="btn btn-secondary" onclick="uploadImage()">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const ws = new WebSocket(`ws://${location.host}/ws`);
+        const chatLog = document.getElementById('chat-log');
+        const messageInput = document.getElementById('message');
+        messageInput.addEventListener("keydown", (event) => {
+            console.log(event.key);
+            if (event.key === "Enter") {
+                document.getElementById("send-button").click();
+            }
+        });
+
+        const addMessage = (text, isUser = false) => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'system'}`;
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = 'bubble';
+            bubbleDiv.textContent = text;
+            messageDiv.appendChild(bubbleDiv);
+            chatLog.appendChild(messageDiv);
+            chatLog.scrollTop = chatLog.scrollHeight; // Auto-scroll to the latest message
+        };
+
+        const imageInput = document.getElementById('image-upload');
+
+        // Function to handle image uploads
+        const uploadImage = () => {
+            const file = imageInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const base64Image = reader.result;
+                    addImage(base64Image, true); // Show the uploaded image in the UI
+                    ws.send(base64Image); // Send the base64-encoded image to the server
+                };
+                reader.readAsDataURL(file); // Convert the image to a base64 string
+                imageInput.value = ''; // Reset the file input for future uploads
+            }
+        };
+
+        // Function to add an image to the chat log
+        const addImage = (imageSrc, isUser = false) => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'system'}`;
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            img.style.maxWidth = '70%';
+            img.style.borderRadius = '15px';
+            img.alt = 'Uploaded image';
+            messageDiv.appendChild(img);
+            chatLog.appendChild(messageDiv);
+            chatLog.scrollTop = chatLog.scrollHeight; // Auto-scroll to the latest message
+        };
+
+        ws.onmessage = (event) => {
+            addMessage(event.data, false); // Fallback for plain text messages
+        };
+
+        ws.onopen = () => {
+            addMessage("Hello! Ask me anything.", false);
+        };
+
+        ws.onclose = () => {
+            addMessage("Goodbye.", false);
+        };
+
+        const sendMessage = () => {
+            const message = messageInput.value;
+            if (message.trim() !== '') {
+                addMessage(message, true); // User message
+                ws.send(message);
+                messageInput.value = '';
+            }
+        };
+    </script>
+</body>
+</html>

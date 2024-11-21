@@ -1,0 +1,4 @@
+*.ipynb
+tmp/*.png
+data/db
+__pycache__/
