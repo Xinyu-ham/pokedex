@@ -2,8 +2,6 @@
 
 RAG architecture implemented with LLM agent for Pokedex chatbot. Retrieve information about pokemons from wiki pages and identify pokemons from images. (Currently only contains the origin gen 151 pokemons)
 
-<table>
-<tr><td style="width:30%">
 
 
 ## Features
@@ -17,14 +15,12 @@ You can ask questions about a pokemon and the pokedex will search the wiki pages
 ### ❓ Get pokemon by type
 You can also ask the pokedex to list pokemons of a certain type. This feature also allows you to get the pokedex to suggest a pokemon that is strong against a certain another pokemon.
 > 💡 This is achieved by saving pokemon type information in the meta-data of the pokemon documents. The retriever will query from the meta-data which avoids going through the entire document.
-</td><td>
+
 
 ## Demo
+<div style="text-align:center"><img src="static/demo.jpeg" width="500"></img></div>
 
-<img src="static/demo.jpeg" width="500"></img>
 
-</td></tr>
-</table>
 
 ## Try it out
 Using OpenAI as LLM so have your API key ready in env.
