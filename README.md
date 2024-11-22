@@ -1,4 +1,3 @@
-![pip installation](img/python3_ver.svg)
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
