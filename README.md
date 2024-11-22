@@ -1,5 +1,22 @@
-# Pokedex
-<div style="text-align:center"><img src="static/icon.png" width="250"><figcaption>RAG architecture implemented with LLM agent for Pokedex chatbot. Retrieve information about pokemons from wiki pages and identify pokemons from images. (Currently only contains the origin gen 151 pokemons)</figcaption></img></div>
+![pip installation](img/python3_ver.svg)
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/Xinyu-ham/pokedex">
+    <img src="static/icon.png" alt="Logo" width="150" height="150">
+  </a>
+
+  <h3 align="center">Pokedex</h3>
+
+  <p align="center">
+    RAG architecture implemented with LLM agent for Pokedex chatbot. Retrieve information about pokemons from wiki pages and identify pokemons from images.
+    <br />
+    <a href="#Demo"><strong>Check it out »</strong></a>
+    <br />
+    <br />
+  </p>
+</div>
+
 
 
 
