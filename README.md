@@ -1,9 +1,11 @@
 # Pokedex
+
 RAG architecture implemented with LLM agent for Pokedex chatbot. Retrieve information about pokemons from wiki pages and identify pokemons from images. (Currently only contains the origin gen 151 pokemons)
----
+
+
 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
 
-<div style="width: 49%;">
+<div style="width: 30%;">
 
 ## Features
 
@@ -19,7 +21,7 @@ You can also ask the pokedex to list pokemons of a certain type. This feature al
 
 </div>
 
-<div style="width: 49%;">
+<div style="width: 30%;">
 
 ## Demo
 <img src="static/demo.jpeg" width="500"></img>
