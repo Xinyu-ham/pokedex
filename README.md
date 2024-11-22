@@ -1,5 +1,5 @@
 # Pokedex
-<div style="text-align:center"><img src="static/pokeball.png" width="250"><figcaption>RAG architecture implemented with LLM agent for Pokedex chatbot. Retrieve information about pokemons from wiki pages and identify pokemons from images. (Currently only contains the origin gen 151 pokemons)</figcaption></img></div>
+<div style="text-align:center"><img src="static/icon.png" width="250"><figcaption>RAG architecture implemented with LLM agent for Pokedex chatbot. Retrieve information about pokemons from wiki pages and identify pokemons from images. (Currently only contains the origin gen 151 pokemons)</figcaption></img></div>
 
 
 
