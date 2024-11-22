@@ -2,10 +2,8 @@
 
 RAG architecture implemented with LLM agent for Pokedex chatbot. Retrieve information about pokemons from wiki pages and identify pokemons from images. (Currently only contains the origin gen 151 pokemons)
 
-
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <table>
-<tr><td style="width:50%">
+<tr><td style="width:30%">
 
 
 ## Features
